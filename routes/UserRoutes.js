@@ -7,4 +7,7 @@ const {userSignupValidator} = require('../validator')
 
 router.post('/signup', userSignupValidator, signup)
 
+router.post('/signin' , signup)
+
+
 module.exports = router
