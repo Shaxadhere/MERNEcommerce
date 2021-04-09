@@ -10,7 +10,7 @@ router.get('/secret/:userId', requireSignin, (req, res) => {
     })
 })
 
-router.param('userById', userById)
+router.param('userId', userById)
 
 
 module.exports = router
