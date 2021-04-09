@@ -4,7 +4,8 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const expressValidator = require('express-validator')
-const userRoutes = require('./routes/AuthRoutes')
+const authRoutes = require('./routes/AuthRoutes')
+const userRoutes = require('./routes/UserRoutes')
 require('dotenv').config()
 
 //app
@@ -24,6 +25,7 @@ app.use(expressValidator())
 
 
 //routes
+app.use('/api', authRoutes)
 app.use('/api', userRoutes)
 
 //listen
