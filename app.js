@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const expressValidator = require('express-validator')
-const userRoutes = require('./routes/UserRoutes')
+const userRoutes = require('./routes/AuthRoutes')
 require('dotenv').config()
 
 //app

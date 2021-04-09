@@ -2,6 +2,7 @@ const User = require('../models/UserModel')
 const {errorHandler} = require('../helpers/dbErrorHandler')
 const jwt = require('jsonwebtoken'); // to generate signed token
 const expressJwt = require('express-jwt') // for authorize check
+require('dotenv').config()
 
 exports.signup = (req, res) => {
     console.log("req.body", req.body)
@@ -53,3 +54,14 @@ exports.signin = (req, res) => { // find the user based on email
         })
     })
 }
+
+exports.signout = (req, res) => {
+    res.clearCookie('t')
+    res.json({message: "Signout success"})
+}
+
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"], // added later
+    userProperty: "auth"
+})
