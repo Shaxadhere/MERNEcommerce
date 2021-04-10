@@ -3,10 +3,11 @@ const router = express.Router()
 const {requireSignin, isAuth, isAdmin} = require('../controllers/AuthController')
 const {create} = require('../controllers/ProductController')
 const {userById} = require('../controllers/UserController')
+const {productById} = require('../controllers/ProductController')
 
 router.post('/product/create/:userId', requireSignin, isAdmin, isAdmin, create)
 
 router.param('userId', userById)
-router.param('productId', userById)
+router.param('productId', productById)
 
 module.exports = router
