@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {requireSignin, isAuth, isAdmin} = require('../controllers/AuthController')
-const {create,productById, read, remove} = require('../controllers/ProductController')
+const {create,productById, read, remove, update} = require('../controllers/ProductController')
 const {userById} = require('../controllers/UserController')
 
 //routes
