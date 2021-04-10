@@ -64,7 +64,7 @@ exports.create = (req, res) => {
 exports.remove = (req, res) => {
     let product = req.product
     product.remove((err, deletedProduct) => {
-        if(err){
+        if (err) {
             return res.status(400).json({error: errorHandler(err)})
         }
         res.json({message: "Product deleted successfully"})
@@ -77,20 +77,6 @@ exports.update = (req, res) => {
     form.parse(req, (err, fields, files) => {
         if (err) {
             return res.status(400).json({error: "Image could not be uploaded"})
-        }
-
-        // check for all fields
-        const {
-            name,
-            description,
-            price,
-            category,
-            quantity,
-            shipping
-        } = fields
-
-        if (!name || !description || !price || !category || !quantity || !shipping) {
-            return res.status(400).json({error: "All fields are required"})
         }
 
         let product = req.product
@@ -112,3 +98,4 @@ exports.update = (req, res) => {
         })
     })
 }
+

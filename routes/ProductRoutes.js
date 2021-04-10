@@ -8,6 +8,7 @@ const {userById} = require('../controllers/UserController')
 router.get('/product/:productId', read)
 router.post('/product/create/:userId', requireSignin, isAdmin, isAdmin, create)
 router.delete('/product/:productId/:userId', requireSignin, isAuth, isAdmin, remove)
+router.put('/product/:productId/:userId', requireSignin, isAuth, isAdmin, update)
 
 //parameters
 router.param('userId', userById)
