@@ -39,3 +39,7 @@ exports.update = (req, res) => {
     const category = req.body
     
 }
+
+exports.list = (req, res) => {
+    
+}
