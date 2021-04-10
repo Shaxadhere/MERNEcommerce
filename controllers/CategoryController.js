@@ -1,14 +1,12 @@
-const User = require('../models/UserModel')
+const Category = require('../models/CategoryModel')
+const {errorHandler} = require('../helpers/dbErrorHandler')
 
-exports.userById = (req, res, next, id) => {
-    User.findById(id).exec((err, user) => {
-        if(err || !user){
-            return res.status(400).json({
-                error: "User not found"
-            })
+exports.create = (req, res) => {
+    const category = new Category(req.body)
+    category.save((err, data) => {
+        if (err) {
+            return res.status(400).json({error: errorHandler(err)})
         }
-
-        req.profile = user
-        next()
+        res.json({data})
     })
 }
