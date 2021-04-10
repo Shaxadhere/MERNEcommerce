@@ -26,9 +26,16 @@ exports.create = (req, res) => {
 }
 
 exports.remove = (req, res) => {
-    
+    let category = req.category
+    category.remove((err) => {
+        if(err){
+            return res.status(400).json({error: err})
+        }
+        res.status(200).json({message: "Category deleted successfully"})
+    })
 }
 
 exports.update = (req, res) => {
-
+    const category = req.body
+    
 }
