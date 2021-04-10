@@ -1,5 +1,5 @@
 const formidable = require('formidable')
-const _ = require('loadash')
+const _ = require('lodash')
 const fs = require('fs')
 const Product = require('../models/ProductModel')
 const {errorHandler} = require('../helpers/dbErrorHandler')
@@ -14,14 +14,14 @@ exports.create = (req, res) => {
         let product = new Product(fields)
         if (files.photo) {
             product.photo.data = fs.readFileSync(files.photo.path)
-            product.photo.contentType = files.photo.type
+            product.photo.contentType = files.photo.type;
         }
 
-        product.save(err, result) => {
+        product.save((err, result) => {
             if(err){
                 res.status(400).json({error: errorHandler(err)})
             }
             res.json({result})
-        }
+        })
     })
 }
