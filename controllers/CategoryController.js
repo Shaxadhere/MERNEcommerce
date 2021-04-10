@@ -3,7 +3,7 @@ const {errorHandler} = require('../helpers/dbErrorHandler')
 
 exports.categoryById = (req, res, next, id) => {
     Category.findById(id).exec((err, category) => {
-        if(err){
+        if(err || !category){
             return res.status(400).json({error: err})
         }
         req.category = category
