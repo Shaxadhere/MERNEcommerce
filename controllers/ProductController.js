@@ -67,6 +67,6 @@ exports.remove = (req, res) => {
         if(err){
             return res.status(400).json({error: errorHandler(err)})
         }
-        res.json({deletedProduct, message: "Product deleted successfully"})
+        res.json({message: "Product deleted successfully"})
     })
 }
