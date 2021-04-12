@@ -99,3 +99,40 @@ exports.update = (req, res) => {
     })
 }
 
+/**Sale & Arrival
+* /products?sortBy=sold&order=desc&limi4
+* /products?sortBy=createdAt&order=desc&limi4
+* if no params are sent, then all products are returned
+**/
+
+exports.list = (req, res) => {
+
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id"
+    let order = req.query.order ? req.query.order : "asc"
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6
+
+    Product.find()
+        .select("-photo")
+        .populate("category")
+        .sort([[sortBy, order]])
+        .limit(limit)
+        .exec((err, products) => {
+            if(err){
+                return res.status(400).json({message: "Products not found"})
+            }
+            res.status(200).json(products)
+        })
+}
+
+exports.listRelated = (req, res) => {
+    let limit = req.query.limit ? parseInt(req.query.limit) : 6
+    Product.find({_id : {$ne : req.product}, category: req.product.category})
+    .limit(limit)
+    .populate('category', '_id name')
+    .exec((err, products) => {
+        if(err){
+            return res.status(400).json({error: "Products not found"})
+        }
+        res.json(products)
+    })
+}

@@ -30,7 +30,7 @@ exports.remove = (req, res) => {
     const category = req.category
     category.remove((err, data) => {
         if(err){
-            return res.status(400).json({error: errorHandler(err)})
+            return res.status(400).json({error: err.msg})
         }
         res.json({message: "Category deleted successfully"})
     })
