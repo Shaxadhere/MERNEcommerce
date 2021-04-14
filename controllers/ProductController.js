@@ -136,3 +136,4 @@ exports.listRelated = (req, res) => {
         res.json(products)
     })
 }
+
