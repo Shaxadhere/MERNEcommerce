@@ -8,6 +8,7 @@ const authRoutes = require('./routes/AuthRoutes')
 const userRoutes = require('./routes/UserRoutes')
 const categoryRoutes = require('./routes/CategoryRoutes')
 const productRoutes = require('./routes/ProductRoutes')
+const cors = require('cors')
 require('dotenv').config()
 
 //app
@@ -22,6 +23,7 @@ mongoose.connect(process.env.DATABASE, {
 
 //middlewares
 app.use(morgan('dev'))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(expressValidator())
